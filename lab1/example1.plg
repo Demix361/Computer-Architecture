@@ -7,12 +7,3 @@ D:\GitHub\computer-architecture\lab1\example1.uvproj
 Project File Date:  11/20/2019
 
 <h2>Output:</h2>
-Rebuild target 'Target 1'
-assembling LPC2300.s...
-compiling main.c...
-main.c(31): warning:  #1-D: last line of file ends without a newline
-main.c(9): warning:  #177-D: variable "n" was declared but never referenced
-main.c(9): warning:  #177-D: variable "k" was declared but never referenced
-linking...
-Program Size: Code=832 RO-data=0 RW-data=0 ZI-data=1384  
-".\example1.axf" - 0 Errors, 3 Warning(s).
