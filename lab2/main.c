@@ -105,20 +105,50 @@ int main (void)
 	unsigned int n, i;
 	tm1638_init();
 
+	 //26 - клапан - 1
+ 	//27 - зажигание - 3
+ 	//28 - стартер - 5
+
 	while (1) /* Бесконечный цикл */
 	{
-		for (n = 1; n <= 0xf; n += 2) 
+		i=1;
+			
+		tm1638_sendcmd(0x46); 
+		i = tm1638_receivebyte();
+			 
+		if (i == 1)
 		{
-			i = 1;
-			while (i != 0) 
-			{
-				tm1638_sendcmd(0x46);
-				i = tm1638_receivebyte();
-			}
-			tm1638_setadr(n);//Устанавливаем адрес регистра
-			tm1638_sendbyte(n);//Передать данные
-			delay(0xffff);//Задержка
-			tm1638_sendbyte(0);//Гасим светодиод
+			tm1638_setadr(1);
+			tm1638_sendbyte(0);
+
+			tm1638_setadr(3);
+			tm1638_sendbyte(0);
+
+			tm1638_setadr(5);
+			tm1638_sendbyte(0);
+			
+			delay(0xfffff);
+		}
+		else
+		{
+		tm1638_setadr(5);
+		tm1638_sendbyte(1);
+		
+		tm1638_setadr(1);
+		tm1638_sendbyte(1);
+
+		delay(0xfffff);
+
+		tm1638_setadr(1);
+		tm1638_sendbyte(0);
+
+		tm1638_setadr(3);
+		tm1638_sendbyte(1);
+
+		delay(0xfffff);
+
+		tm1638_setadr(3);
+		tm1638_sendbyte(0);
 		}
 	}
 }
