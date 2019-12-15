@@ -1,4 +1,4 @@
 Dependencies for Project 'example1', Target 'Target 1': (DO NOT MODIFY !)
-F (.\LPC2300.s)(0x5DDAE2DE)(--cpu ARM7TDMI --pd "__EVAL SETA 1" -g --apcs=interwork -I"C:\Program Files\Keil_v5\ARM\RV31\INC"-I"C:\Program Files\Keil_v5\ARM\CMSIS\Include"-I"C:\Program Files\Keil_v5\ARM\INC\Philips"--pd "__UVISION_VERSION SETA 528"--list .\lpc2300.lst --xref -o .\lpc2300.o --depend .\lpc2300.d)
-F (.\main.c)(0x5DDBA1A0)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I"C:\Program Files\Keil_v5\ARM\RV31\INC"-I"C:\Program Files\Keil_v5\ARM\CMSIS\Include"-I"C:\Program Files\Keil_v5\ARM\INC\Philips"-D__UVISION_VERSION="528"-o .\main.o --omf_browse .\main.crf --depend .\main.d)
-I (C:\Program Files\Keil_v5\ARM\INC\Philips\LPC23xx.H)(0x559D2158)
+F (.\LPC2300.s)(0x5DDD680D)(--cpu ARM7TDMI --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips--list .\lpc2300.lst --xref -o .\lpc2300.o --depend .\lpc2300.d)
+F (.\main.c)(0x5DDD680D)(-c --cpu ARM7TDMI -D__EVAL -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Philips-o .\main.o --omf_browse .\main.crf --depend .\main.d)
+I (C:\Program Files\Keil_v5\ARM\INC\Philips\LPC23xx.H)(0x00000000)

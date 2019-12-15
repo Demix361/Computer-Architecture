@@ -1,9 +1,3 @@
-/*
-Управление портами ввода/вывода.
- Для правильного связывания модулей отметить
- Options -> Linker -> Use Memory Layout from Target Dialog
-*/
-
 #include <LPC23xx.H> /* Описание LPC23xx */
 #define STB 26 //Port1.26
 #define CLK 27 //Port1.27
@@ -17,26 +11,29 @@ void delay(unsigned int count)
 }
 
 
-void tm1638_sendbyte(unsigned int x) {
+void tm1638_sendbyte(unsigned int x)
+{
 	unsigned int i;
 
-	IODIR1 |= (1<<DIO);//Устанавливаем пин DIO на вывод
+	IODIR1 |= (1 << DIO); //Устанавливаем пин DIO на вывод
 	for(i = 0; i < 8; i++)
 	{
-		IOCLR1 = (1<<CLK);//Сигнал CLK устанавливаем в 0
-		delay(0xfff);//Задержка
+		IOCLR1 = (1 << CLK); //Сигнал CLK устанавливаем в 0
+		delay(0xfff); //Задержка
+
 		if (x & 1)
 		{
-			IOSET1=(1<<DIO);
+			IOSET1 = (1 << DIO);
 		}
 		//Устанавливаем значение на выходе DIO
 		else
 		{
-			IOCLR1=(1<<DIO);
+			IOCLR1 = (1 << DIO);
 		}
+
 		delay(0xfff);//Задержка
 		x >>= 1;
-		IOSET1 = (1<<CLK);//Сигнал CLK устанавливаем в 1
+		IOSET1 = (1 << CLK);//Сигнал CLK устанавливаем в 1
 		delay(0x1fff);
 	}
 }
@@ -47,17 +44,17 @@ unsigned int tm1638_receivebyte()
 	unsigned int i;
 	unsigned int x = 0;
 
-	IODIR1 &= ~(1<<DIO); //Устанавливаем пин DIO на ввод
+	IODIR1 &= ~(1 << DIO); //Устанавливаем пин DIO на ввод
 	for(i = 0; i < 32; i++)
 	{
-		IOCLR1 = (1<<CLK); //Сигнал CLK устанавливаем в 0
+		IOCLR1 = (1 << CLK); //Сигнал CLK устанавливаем в 0
 		delay(0xfff); //Задержка
-		if (IOPIN1&(1<<DIO))
+		if (IOPIN1 & (1 << DIO))
 		{
-			x |= (1<<i);
+			x |= (1 << i);
 		}
 		delay(0xfff); //Задержка
-		IOSET1 = (1<<CLK); //Сигнал CLK устанавливаем в 1
+		IOSET1 = (1 << CLK); //Сигнал CLK устанавливаем в 1
 		delay(0x1fff);
 	}
 	return x;
@@ -67,11 +64,11 @@ unsigned int tm1638_receivebyte()
 void tm1638_sendcmd(unsigned int x)
 {
 	//Устанавливаем пассивный высокий уровень сигнала STB
-	IOSET1 = (1<<STB);
+	IOSET1 = (1 << STB);
 	//Устанавливаем пины CLK,DIO,STB на вывод
-	IODIR1 = (1<<CLK)|(1<<DIO)|(1<<STB);
+	IODIR1 = (1 << CLK) | (1 << DIO) | (1 << STB);
 	//Устанавливаем активный низкий уровень сигнала STB
-	IOCLR1 = (1<<STB);
+	IOCLR1 = (1 << STB);
 	tm1638_sendbyte(x);
 }
 
@@ -79,7 +76,7 @@ void tm1638_sendcmd(unsigned int x)
 void tm1638_setadr(unsigned int adr) 
 {
 	//Установить адрес регистра LED инидикации
-	tm1638_sendcmd(0xC0|adr);
+	tm1638_sendcmd(0xC0 | adr);
 }
 
 
@@ -105,13 +102,13 @@ int main (void)
 	unsigned int n, i;
 	tm1638_init();
 
-	 //26 - клапан - 1
+	//26 - клапан - 1
  	//27 - зажигание - 3
  	//28 - стартер - 5
 
-	while (1) /* Бесконечный цикл */
+	while (1)
 	{
-		i=1;
+		i = 1;
 			
 		tm1638_sendcmd(0x46); 
 		i = tm1638_receivebyte();

@@ -1399,11 +1399,9 @@ e)
               00000000 
               00000400 
               00000000 
-Command Line: --debug --xref --diag_suppress=9931 --apcs=interwork --depend=.\l
-pc2300.d -o.\lpc2300.o -I"C:\Program Files\Keil_v5\ARM\RV31\INC" -I"C:\Program 
-Files\Keil_v5\ARM\CMSIS\Include" -I"C:\Program Files\Keil_v5\ARM\INC\Philips" -
--predefine="__EVAL SETA 1" --predefine="__UVISION_VERSION SETA 528" --list=.\lp
-c2300.lst LPC2300.s
+Command Line: --debug --xref --apcs=interwork --depend=.\lpc2300.d -o.\lpc2300.
+o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\Philips 
+--predefine="__EVAL SETA 1" --list=.\lpc2300.lst LPC2300.s
 
 
 
@@ -2759,4 +2757,4 @@ Symbol: __use_two_region_memory
       None
 Comment: __use_two_region_memory unused
 2 symbols
-496 symbols in table
+495 symbols in table
