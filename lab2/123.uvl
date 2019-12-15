@@ -1,0 +1,56 @@
+[Signal 1]
+DispName=(port1 & 0x04000000) >> 26
+PlotType=1
+Color=255
+ValHex=0
+MinDec=0
+MinVal=0.
+MaxDec=0
+MaxVal=4294967295.
+Mask=67108864
+Offset=26
+Adaptive=0
+DispNumber=1
+HeightFactor=0.27956985638939108041
+[Signal 2]
+DispName=(port1 & 0x08000000) >> 27
+PlotType=1
+Color=255
+ValHex=0
+MinDec=0
+MinVal=0.
+MaxDec=0
+MaxVal=4294967295.
+Mask=134217728
+Offset=27
+Adaptive=0
+DispNumber=2
+HeightFactor=0.23907973849892405482
+[Signal 3]
+DispName=(port1 & 0x10000000) >> 28
+PlotType=1
+Color=32768
+ValHex=0
+MinDec=0
+MinVal=0.
+MaxDec=0
+MaxVal=4294967295.
+Mask=268435456
+Offset=28
+Adaptive=0
+DispNumber=3
+HeightFactor=0.18525776470508353855
+[Signal 4]
+DispName=(port1 & 0x20000000) >> 29
+PlotType=1
+Color=8388608
+ValHex=0
+MinDec=0
+MinVal=0.
+MaxDec=0
+MaxVal=4294967295.
+Mask=536870912
+Offset=29
+Adaptive=0
+DispNumber=4
+HeightFactor=0.25808095878489756281
