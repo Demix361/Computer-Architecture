@@ -605,18 +605,18 @@ ARM Macro Assembler    Page 10
   355 00000000 00000001 
                        CLKSRCSEL_Val
                                EQU              0x00000001
-  356 00000000 0000000B 
+  356 00000000 00010027 
                        PLLCFG_Val
-                               EQU              0x0000000B
-  357 00000000 00000017 
+                               EQU              0x00010027
+  357 00000000 00000013 
                        CCLKCFG_Val
-                               EQU              0x00000017
+                               EQU              0x00000013
   358 00000000 00000005 
                        USBCLKCFG_Val
                                EQU              0x00000005
-  359 00000000 00000004 
+  359 00000000 00000028 
                        PCLKSEL0_Val
-                               EQU              0x00000004
+                               EQU              0x00000028
   360 00000000 00000000 
                        PCLKSEL1_Val
                                EQU              0x00000000
@@ -1213,7 +1213,7 @@ AND:(CLOCK_SETUP != 0)
   655 00000078 E3A03001        LDR              R3, =CLKSRCSEL_Val ; Select PLL
                                                              source clock
   656 0000007C E580310C        STR              R3, [R0, #CLKSRCSEL_OFS]
-  657 00000080 E3A0300B        LDR              R3, =PLLCFG_Val
+  657 00000080 E59F30CC        LDR              R3, =PLLCFG_Val
   658 00000084 E5803084        STR              R3, [R0, #PLLCFG_OFS]
   659 00000088 E580108C        STR              R1, [R0, #PLLFEED_OFS]
   660 0000008C E580208C        STR              R2, [R0, #PLLFEED_OFS]
@@ -1242,14 +1242,14 @@ ARM Macro Assembler    Page 20
   678 000000AC E5903088 
                        M_N_Lock
                                LDR              R3, [R0, #PLLSTAT_OFS]
-  679 000000B0 E59F409C        LDR              R4, =(PLLSTAT_M:OR:PLLSTAT_N)
+  679 000000B0 E59F40A0        LDR              R4, =(PLLSTAT_M:OR:PLLSTAT_N)
   680 000000B4 E0033004        AND              R3, R3, R4
-  681 000000B8 E3A0400B        LDR              R4, =PLLCFG_Val
+  681 000000B8 E59F4094        LDR              R4, =PLLCFG_Val
   682 000000BC E0333004        EORS             R3, R3, R4
   683 000000C0 1AFFFFF9        BNE              M_N_Lock
   684 000000C4         
   685 000000C4         ;  Setup CPU clock divider
-  686 000000C4 E3A03017        MOV              R3, #CCLKCFG_Val
+  686 000000C4 E3A03013        MOV              R3, #CCLKCFG_Val
   687 000000C8 E5803104        STR              R3, [R0, #CCLKCFG_OFS]
   688 000000CC         
   689 000000CC         ;  Setup USB clock divider
@@ -1257,7 +1257,7 @@ ARM Macro Assembler    Page 20
   691 000000D0 E5803108        STR              R3, [R0, #USBCLKCFG_OFS]
   692 000000D4         
   693 000000D4         ;  Setup Peripheral Clock
-  694 000000D4 E3A03004        LDR              R3, =PCLKSEL0_Val
+  694 000000D4 E3A03028        LDR              R3, =PCLKSEL0_Val
   695 000000D8 E58031A8        STR              R3, [R0, #PCLKSEL0_OFS]
   696 000000DC E3A03000        LDR              R3, =PCLKSEL1_Val
   697 000000E0 E58031AC        STR              R3, [R0, #PCLKSEL1_OFS]
@@ -1269,7 +1269,7 @@ C)
   702 000000EC E580108C        STR              R1, [R0, #PLLFEED_OFS]
   703 000000F0 E580208C        STR              R2, [R0, #PLLFEED_OFS]
   704 000000F4         
-  705 000000F4 E59F405C        LDR              R4, =PCONP_Val ; Enable Periphe
+  705 000000F4 E59F4060        LDR              R4, =PCONP_Val ; Enable Periphe
                                                             ral Clocks
   706 000000F8 E58040C4        STR              R4, [R0, #PCONP_OFS]
   707 000000FC                 ENDIF                        ; CLOCK_SETUP
@@ -1316,7 +1316,7 @@ ARM Macro Assembler    Page 21
   823 000000FC         ; Setup Stack for each mode ----------------------------
                        ------------------------
   824 000000FC         
-  825 000000FC E59F0058        LDR              R0, =Stack_Top
+  825 000000FC E59F005C        LDR              R0, =Stack_Top
   826 00000100         
   827 00000100         ;  Enter Undefined Instruction Mode and set its Stack Po
                        inter
@@ -1369,13 +1369,14 @@ _Bit
 ARM Macro Assembler    Page 22 
 
 
-  869 00000148 E59F0010        LDR              R0, =__main
+  869 00000148 E59F0014        LDR              R0, =__main
   870 0000014C E12FFF10        BX               R0
   871 00000150         
   872 00000150         
   873 00000150                 IF               :DEF:__MICROLIB
   879 00000150         ; User Initial Stack & Heap
   880 00000150 E01FC000 
+              00010027 
               00FF7FFF 
               04280FDE 
               00000000 
@@ -1714,7 +1715,7 @@ Symbol: CCLKCFG_OFS
    Uses
       At line 687 in file LPC2300.s
 Comment: CCLKCFG_OFS used once
-CCLKCFG_Val 00000017
+CCLKCFG_Val 00000013
 
 Symbol: CCLKCFG_Val
    Definitions
@@ -2378,7 +2379,7 @@ Symbol: PCLKSEL0_OFS
    Uses
       At line 695 in file LPC2300.s
 Comment: PCLKSEL0_OFS used once
-PCLKSEL0_Val 00000004
+PCLKSEL0_Val 00000028
 
 Symbol: PCLKSEL0_Val
    Definitions
@@ -2540,7 +2541,7 @@ Symbol: PLLCFG_OFS
    Uses
       At line 658 in file LPC2300.s
 Comment: PLLCFG_OFS used once
-PLLCFG_Val 0000000B
+PLLCFG_Val 00010027
 
 Symbol: PLLCFG_Val
    Definitions
